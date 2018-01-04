@@ -8,6 +8,8 @@ function newClass(Constructor){
     return Constructor;
 }
 function extend(ParentConstructor, Constructor){
+    Constructor = Constructor || function newClass(){};
+
     function F(){}; // empty Constructor to avoid ParentConstructor running
     F.prototype = ParentConstructor.prototype;
     Constructor.prototype = new F();
