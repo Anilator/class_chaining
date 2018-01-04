@@ -17,7 +17,7 @@ var f = new Father();
 Extended usage:
 ```js
 var Grandfather = newClass(
-    function Grandfather(n){ this.name = n }, // new class constructor
+    function Grandfather(n){ this.name = n }, // new class constructor. Important: this function's name will be the Class name
     function getName(){ return this.name });  // methods for prototype
     
 var Father = extend(
@@ -45,6 +45,8 @@ function newClass(Constructor){
     return Constructor;
 }
 function extend(ParentConstructor, Constructor){
+    Constructor = Constructor || function newClass(){};
+    
     function F(){}; // empty Constructor to avoid ParentConstructor running
     F.prototype = ParentConstructor.prototype;
     Constructor.prototype = new F();
